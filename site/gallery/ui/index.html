@@ -1,24 +1,64 @@
-<!DOCTYPE html>
 <html>
-<meta charset="iso-8859-1">
-
 <head>
-<link href="ui.css" rel="stylesheet">
-<script type="text/javascript" src="../../../src/brython.js"></script>
+  <!-- Site design shamelessly stolen from semantic-ui.com -->
+  <!-- Standard Meta -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Site Properities -->
+  <title>Brython UI Module</title>
+  <meta name="description" content="Gallery demonstrating Brython UI module">
+  <meta name="keywords" content="html5, ui, python, brython">
+
+  <!-- Scripts for UI -->
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/semantic-ui/0.19.3/css/semantic.min.css">
+  <script src="//cdn.jsdelivr.net/semantic-ui/0.19.3/javascript/semantic.min.js"></script>
+  <script type="text/javascript" src="/src/brython.js"></script>
+
 </head>
+<body id='example' onload="brython(1)" ontouchstart>
+  <script type="text/python3">
+    from browser import document, html
+    from javascript import JSObject
+    import ui
 
-<body onLoad="brython()">
-<div id="sidebar">
-<h3 class="widget-title">Widgets</h3>
-<ul>
-<li><a href="dialog.html">Dialog</a></li>
-<li><a href="progressbar.html">ProgressBar</a></li>
+    container = document.body
 
-</ul>
-</div> <!-- sidebar -->
+    sidebarButton = ui.Button(
+        ui.Icon(Class="list layout") + html.SPAN('Menu', Class="text"),
+        Class="ui black huge launch right attached button"
+    )
 
-<div id="container">
-</div>
+    print(dir(sidebarButton))
+
+    print(sidebarButton.__mro__)
+
+    f = sidebarButton.animate
+
+    f('Test')
+
+    print("Did that work")
+
+    '''
+    # TODO: fix animation for these
+    def menuMouseEnter(event):
+        sidebarButton.stop()
+        #TODO: fix animation to later
+        sidebarButton.children[1].style = {'display':'inline'}
+        sidebarButton.animate({'width':'155px'}, 300)
+    sidebarButton.on('mouseenter', menuMouseEnter)
+
+    def menuMouseLeave(event):
+        sidebarButton.children[1].style = {'display':'none'}
+        sidebarButton.stop()
+        sidebarButton.animate({'width': '70px'}, 300)
+    sidebarButton.on('mouseleave', menuMouseLeave)
+    '''
+    container <= sidebarButton
+
+  </script>
 
 </body>
-</html>
+</head>
